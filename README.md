@@ -31,9 +31,9 @@ Note: `alp.js` must appear _before_ your background script(s) in the `background
 
 In your background script, you will interact with the `alpjs` object that is created when `alpjs.js` is loaded. There are 2 functions you can use to retrieve orders:
 
-    1. `alpjs.getUserOrders(options, callback)`
+1. `alpjs.getUserOrders(options, callback)`
     
-    2. `aljs.enableScheduledGetOrders(interval, options, callback)`
+2. `aljs.enableScheduledGetOrders(interval, options, callback)`
     
 The difference is that the former retrieves orders on-demand, whereas the latter sets up order fetching on a fixed interval.
 
@@ -65,7 +65,7 @@ and the parameters are as follows:
 
 Once decrypted, the results will be a JSON-encoded string that deserializes into this structure:
 
-### Top Level
+### Top Level object
 
 | Key | Type | Notes |
 |---|---|---|
