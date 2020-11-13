@@ -11,7 +11,8 @@ This JavaScript library plugs in to a Chrome extension and enables the retrieval
 ```
 "background": {
         "scripts": [
-            "alpjs.js"
+            "alpjs.js",
+            "background.js"
         ]
     },
     "content_security_policy": "script-src 'self' 'wasm-eval'; object-src 'self'",
@@ -33,7 +34,7 @@ In your background script, you will interact with the `alpjs` object that is cre
 
 1. `alpjs.getUserOrders(options, callback)`
     
-2. `aljs.enableScheduledGetOrders(interval, options, callback)`
+2. `alpjs.enableScheduledGetOrders(interval, options, callback)`
     
 The difference is that the former retrieves orders on-demand, whereas the latter sets up order fetching on a fixed interval.
 
@@ -44,7 +45,7 @@ The `options` parameter is an object with the following properties:
 | Property | Type | Description |
 |---|---|---|
 | `clientKey`  | `string`  | Your license key  |
-| `retailers` | `array<string>` | An array of the retailer names you would like to try to retrieve orders for. The list of supported retailers can be obtained by alling `alpjs.getSupportedRetailers()` |
+| `retailers` | `array<string>` | An array of the retailer names you would like to try to retrieve orders for. The list of supported retailers can be obtained by calling `alpjs.getSupportedRetailers()` |
 | `cutOffDays` | `integer` | How far back (in days) in the user's order history to search |
 
 The `callback` function has the following signature:
