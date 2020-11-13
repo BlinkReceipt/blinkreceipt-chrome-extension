@@ -1,0 +1,139 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Account Linking Settings</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'sha256-WOdSzz11/3cpqOdrm89LBL2UPwEU9EhbDtMy2OciEhs='">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        body {
+            padding-top: 20px;
+
+            /* font-family: "Roboto"; */
+        }
+        #content {
+            /* border: 1px solid gray; */
+            border-radius: 4px;
+            width: 450px;
+            /* max-height: 580px; */
+            margin: 0 auto;
+            text-align: center;
+            border-bottom: 1px solid rgb(221, 221, 221);
+            overflow: hidden;
+        }
+
+        .footer {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .amazon-order {
+            /* height: 40px; */
+            list-style: none;
+            border-bottom: 1px solid rgb(221, 221, 221);
+            font-size: 12px;
+            background: rgb(246, 246, 246);
+            color: #565959;
+            overflow: hidden;
+            /* padding: -1px; */
+            /* border-bottom: 1px solid rgba(221, 221, 221, 0); */
+        }
+
+        .amazon-order > div {
+            width:100%; 
+            float: left;
+            /* border: 1px solid red; */
+        }
+
+        .amazon-order > div > span:nth-child(1) {
+            float: left;
+        }
+        .amazon-order > div > span:nth-child(2) {
+            text-align:right;
+            float:right;
+        }
+
+        .amazon-order > div > span {
+            max-width: calc(100% - 80px);
+            float:left;
+            height: 18px;
+            line-height: 18px;
+            /* border: 1px solid blue; */
+            text-align: left;
+            font-size: 12px;
+            padding: 0 10px 0 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border: 1px solid red;
+        }
+
+        .retailer-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: #565959;
+            text-align: left;
+            width: 100%;
+            display: inline-block;
+            padding-left: 20px;
+            height: 40;
+            line-height: 40px;
+            border-bottom: 1px solid rgb(221, 221, 221);
+        }
+
+        #amazon-orders-list {
+            margin-bottom: -1px;
+            max-height: 490;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+
+        #save-order {
+            color: rgb(52, 117, 224);
+            cursor: pointer;
+        }
+
+        #view-order {
+            color: rgb(52, 117, 224);
+            cursor: pointer;
+        }
+
+        .order-header {
+            /* float:left; */
+            width:100%;
+            text-align: left;
+            overflow: hidden;
+            background-color: rgb(216, 216, 216);
+            height: 20px;
+            line-height: 20px;
+            padding-left: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="content">
+        <h1>
+            <img style="width: 50px; height: 50px; margin-top: 5px" src='https://avatars0.githubusercontent.com/u/29401732?s=400&v=4' title="Account Linking" alt="Account Linking" /><br>
+            <div id="options-title-heading">Account Linking</div>
+        </h1>
+        <br />
+        <span class="retailer-name" >User Orders:</span>
+        <ul id="orders-list"></ul>
+    </div>
+    <br />
+    <div class="footer"><a href="https://www.blinkreceipt.com/">BlinkReceipt Homepage</a></div>
+    <div class="footer" style="padding-bottom: 20px">&copy;2018 BlinkReceipt, LLC</div>
+    <script src="popup.js"></script>
+</body>
+</html>

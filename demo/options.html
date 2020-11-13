@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Account Linking Settings</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'sha256-WOdSzz11/3cpqOdrm89LBL2UPwEU9EhbDtMy2OciEhs='">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            padding-top: 50px;
+
+            /* font-family: "Roboto"; */
+        }
+        #content {
+            border: 1px solid gray;
+            border-radius: 4px;
+            width: 600px;
+            height: 380px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .option-row {
+            margin-left: 30px;
+            margin-right: 30px;
+            height: 40px;
+            border-bottom: 1px solid lightgray;
+            padding-top: 5px;
+        }
+
+        .option-row > span {
+            width: 150px;
+            display: block;
+            float: left;
+            font-weight: 700;
+            font-size: 16px;
+            text-align: left;
+            height: 30px;
+            line-height: 30px;
+
+        }
+
+        .option-row > input {
+            width: 50px;
+            display: block;
+            float: left;
+            height: 30px;
+        }
+
+        .option-row > input.radio {
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .option-row > label {
+            /* width: 150px; */
+            display: block;
+            float: left;
+            font-weight: 700;
+            font-size: 16px;
+            text-align: left;
+            height: 30px;
+            line-height: 30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="content">
+        <h1>
+            <img style="width: 50px; height: 50px; margin-top: 5px" src='https://avatars0.githubusercontent.com/u/29401732?s=400&v=4' title="Account Linking" alt="Account Linking" /><br>
+            <div id="options-title-heading">Account Linking</div>
+        </h1>
+        <br />
+        <div class="option-row">
+            <span style="font-size: 12px; font-weight: 600;color: gray;">General Settings</span>
+        </div>
+        <div class="option-row">
+            <span>Cut Off Days: </span>
+            <input id="global-cutoff-days" min="30" max="999" type="number" value="30">
+        </div>
+        <div class="option-row">
+            <input class="radio" type="radio" id="on-tab-open" value="on-tab-open" checked>
+            <label for="on-tab-open">On Tab Open</label>
+        </div>
+        <div class="option-row">
+            <input class="radio" type="radio" id="manual" value="manual">
+            <label for="manual">Manual</label>
+        </div>
+        <div class="option-row">
+            <input class="radio" type="radio" id="scheduled" value="scheduled">
+            <label style="margin-right: 46px;" for="scheduled">Scheduled</label>
+            <input id="scheduled-secs" min="1" max="10" type="number" value="1">
+        </div>
+    <br /><br />
+    <div class="footer"><a href="https://www.blinkreceipt.com/">BlinkReceipt Homepage</a></div>
+    <div class="footer">&copy;2018 BlinkReceipt, LLC</div>
+    <script src="options.js"></script>
+</body>
+</html>
