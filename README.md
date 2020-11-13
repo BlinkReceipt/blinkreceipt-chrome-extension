@@ -4,14 +4,14 @@ This JavaScript library plugs in to a Chrome extension and enables the retrieval
 
 ## Setup
 
-- Copy `alp.js` into your extension's directory (CDN integration coming soon)
+- Copy `accountLinking.js` into your extension's directory (CDN integration coming soon)
 
 - You must configure your `manifest.json` in the following way (only relevant keys shown):
 
 ```
 "background": {
         "scripts": [
-            "alpjs.js",
+            "accountLinking.js",
             "background.js"
         ]
     },
@@ -26,15 +26,15 @@ This JavaScript library plugs in to a Chrome extension and enables the retrieval
 ```
 Note: These values are meant to _supplement_ any values you already have in your manifest for these keys.
 
-Note: `alp.js` must appear _before_ your background script(s) in the `background.scripts` key
+Note: `accountLinking.js` must appear _before_ your background script(s) in the `background.scripts` key
 
-## Interacting with the `alpjs` object
+## Interacting with the `AccountLinking` object
 
-In your background script, you will interact with the `alpjs` object that is created when `alpjs.js` is loaded. There are 2 functions you can use to retrieve orders:
+In your background script, you will interact with the `AccountLinking` object that is created when `accountLinking.js` is loaded. There are 2 functions you can use to retrieve orders:
 
-1. `alpjs.getUserOrders(options, callback)`
+1. `AccountLinking.getUserOrders(options, callback)`
     
-2. `alpjs.enableScheduledGetOrders(interval, options, callback)`
+2. `AccountLinking.enableScheduledGetOrders(interval, options, callback)`
     
 The difference is that the former retrieves orders on-demand, whereas the latter sets up order fetching on a fixed interval.
 
@@ -45,7 +45,7 @@ The `options` parameter is an object with the following properties:
 | Property | Type | Description |
 |---|---|---|
 | `clientKey`  | `string`  | Your license key  |
-| `retailers` | `array<string>` | An array of the retailer names you would like to try to retrieve orders for. The list of supported retailers can be obtained by calling `alpjs.getSupportedRetailers()` |
+| `retailers` | `array<string>` | An array of the retailer names you would like to try to retrieve orders for. The list of supported retailers can be obtained by calling `AccountLinking.getSupportedRetailers()` |
 | `cutOffDays` | `integer` | How far back (in days) in the user's order history to search |
 
 The `callback` function has the following signature:

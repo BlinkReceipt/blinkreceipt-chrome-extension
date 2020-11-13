@@ -21,17 +21,17 @@ chrome.storage.sync.get(settings => {
                         const scheduledSecs = parseInt(settings['scheduled-secs']) || 10;
                         let params = { retailers: validRetailers(null) };
                         getDefaultOpts(opts => {
-                            alpjs.enableScheduledGetOrders(scheduledSecs, {...params, ...opts}, processOrders);
+                            AccountLinking.enableScheduledGetOrders(scheduledSecs, {...params, ...opts}, processOrders);
                         });
                     });
                     return;
                 }
-                alpjs.disableScheduledGetOrders();
+                AccountLinking.disableScheduledGetOrders();
             } else if (key == 'scheduled-secs') {
                 if (_fetchMode == _fetchModes.SCHEDULED) {
                     let params = { retailers: validRetailers(null) };
                     getDefaultOpts(opts => {
-                        alpjs.enableScheduledGetOrders(scheduledSecs, {...params, ...opts}, processOrders);
+                        AccountLinking.enableScheduledGetOrders(scheduledSecs, {...params, ...opts}, processOrders);
                     });
                 }
             }
@@ -64,7 +64,7 @@ chrome.storage.sync.get(settings => {
         const scheduledSecs = parseInt(settings['scheduled-secs']) || 10;
         let params = { retailers: validRetailers(null) };
         getDefaultOpts(opts => {
-            alpjs.enableScheduledGetOrders(scheduledSecs, {...params, ...opts}, processOrders);
+            AccountLinking.enableScheduledGetOrders(scheduledSecs, {...params, ...opts}, processOrders);
         }); 
     }
 
@@ -72,7 +72,7 @@ chrome.storage.sync.get(settings => {
 
 function validRetailers(url) {
     if (_supportedRetailers == null) {
-        _supportedRetailers = alpjs.getSupportedRetailers();
+        _supportedRetailers = AccountLinking.getSupportedRetailers();
     }
     if (_fetchMode == _fetchModes.SCHEDULED) {
         return _supportedRetailers;
@@ -95,7 +95,7 @@ function getUserOrders(params) {
         return;
     }
     getDefaultOpts(opts => {
-        alpjs.getOrders({...params, ...opts}, processOrders);
+        AccountLinking.getOrders({...params, ...opts}, processOrders);
     });
 }
 
