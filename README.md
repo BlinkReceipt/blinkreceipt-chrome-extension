@@ -62,6 +62,32 @@ and the parameters are as follows:
 | `data` | `string` | A base-64 encoded, encrypted payload of the retrieval results, which should be decrypted server side using your secret key |
 | `errorMessage` | `string` | If an error occurred, this will be populated with the error message |
 
+## Decrypting Results
+
+The `data` parameter will contain the hex-encoded encrypted results. Here is the procedure for decryption:
+ - The algorithm used for encryption & decryption is AES-128-CBC
+ - The key is the first 16 bytes of your _secret key_ as assigned during setup
+ - The initialization vector is the first 16 bytes of the encrypted text
+ - You should remove the IV from the ciphertext prior to decryption (i.e. pull out the first 16 bytes which are the IV, and use the rest as the input for decryption)
+ 
+### Decryption Samples in Different Languages 
+- Node.js
+```javascript
+function decryptData(text, secretKey) {
+    const buffer = Buffer.from(text, 'hex');
+    const finalKey = Buffer.from(secretKey).slice(0, 16).toString();
+    const iv = new Buffer.from(buffer.slice(0, 16));
+    const encryptedText = new Buffer.from(buffer.slice(16, buffer.length));
+
+    const decipher = crypto.createDecipheriv("aes-128-cbc", finalKey, iv);
+    let decrypted = decipher.update(encryptedText);
+    decrypted = Buffer.concat([decrypted, decipher.final()]);
+    return decrypted.toString();
+}
+```
+- Java
+- Bash
+
 ## Results Structure
 
 Once decrypted, the results will be a JSON-encoded string that deserializes into this structure:
