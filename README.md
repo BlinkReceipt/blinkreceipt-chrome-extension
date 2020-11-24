@@ -74,11 +74,19 @@ The `data` parameter will contain the hex-encoded encrypted results. Here is the
 - Node.js
 ```javascript
 function decryptData(text, secretKey) {
+    //initialize ciphertext from hex-encoded input
     const buffer = Buffer.from(text, 'hex');
+
+    //construct decryption key as first 16 bytes of secretKey
     const finalKey = Buffer.from(secretKey).slice(0, 16).toString();
+    
+    //set iv to first 16 bytes of ciphertext
     const iv = new Buffer.from(buffer.slice(0, 16));
+
+    //remove first 16 bytes from ciphertext
     const encryptedText = new Buffer.from(buffer.slice(16, buffer.length));
 
+    //perform decryption
     const decipher = crypto.createDecipheriv("aes-128-cbc", finalKey, iv);
     let decrypted = decipher.update(encryptedText);
     decrypted = Buffer.concat([decrypted, decipher.final()]);
@@ -86,6 +94,35 @@ function decryptData(text, secretKey) {
 }
 ```
 - Java
+```java
+import java.security.Key;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Arrays;
+import org.apache.commons.codec.binary.Hex;
+public class Decrypt {
+    public static void main(String[] args) {
+        try {
+            String hex = "encrypted_data"
+            byte[] bytes = Hex.decodeHex(hex.toCharArray());
+            byte[] iv = Arrays.copyOfRange(bytes, 0, 16);
+            byte[] text = Arrays.copyOfRange(bytes, 16, bytes.length);
+            
+            String key = "my_secret_key";
+            byte[] finalKey = Arrays.copyOfRange(key.getBytes(), 0, 16);
+            Key aesKey = new SecretKeySpec(finalKey, "AES");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.DECRYPT_MODE, aesKey, ivParameterSpec);
+            String decrypted = new String(cipher.doFinal(text));
+            System.err.println("Decrypted: " + decrypted);
+        } catch(Exception e) {
+          e.printStackTrace();
+        }
+    }
+}
+```
 - Bash
 
 ## Results Structure
