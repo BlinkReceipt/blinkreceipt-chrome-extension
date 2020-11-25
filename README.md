@@ -124,7 +124,7 @@ public class Decrypt {
 }
 ```
 - Shell script
-```
+```bash
 #!/bin/bash
 text="encrypted_text_here"
 mySecretKey="my_secret_key_here"
