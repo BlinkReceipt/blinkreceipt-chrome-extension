@@ -123,7 +123,16 @@ public class Decrypt {
     }
 }
 ```
-- Bash
+- Shell script
+```
+#!/bin/bash
+text="encrypted_text_here"
+mySecretKey="my_secret_key_here"
+iv=${text:0:32}
+payload=${text:32}
+key=$(xxd -pu <<< "${mySecretKey:0:16}")
+echo `echo $payload | xxd -r -p | openssl enc -aes-128-cbc -d -v -p -nosalt -K $key -iv $iv`
+```
 
 ## Results Structure
 
