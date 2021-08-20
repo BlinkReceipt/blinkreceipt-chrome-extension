@@ -77,7 +77,13 @@ function validRetailers(url) {
     if (_fetchMode == _fetchModes.SCHEDULED) {
         return _supportedRetailers;
     }
-    return _supportedRetailers.filter(name => (url || '').includes(`${name.toLowerCase()}.`));
+    const finalList = _supportedRetailers.filter(name => {
+        if (name == 'Amazon') {
+            return (url || '').includes(`${name.toLowerCase()}.`) && (url || '').includes('order-history');   
+        }
+        return (url || '').includes(`${name.toLowerCase()}.`);
+    });
+    return finalList;
 }
 
 function getDefaultOpts(callback) {
@@ -105,18 +111,7 @@ function processOrders(name, code, data, errorMessage) {
     if (code != 200) {
         return;
     }
-    
-    const orders = JSON.parse(data);
     console.log('Orders: ');
-    console.log(orders);
+    console.log(data);
     
-    for (let x = 0; x < orders.length; x++) {
-        const order = orders[x];
-        const retailerId = order.retailerId;
-        const uniqueValue = order['cacheIdentifier'];
-        let retailerOrdersMap = _ordersCache[retailerId] || {};
-        retailerOrdersMap[uniqueValue] = order;
-        _ordersCache[retailerId] = retailerOrdersMap; 
-    }
-    console.log(_ordersCache);
 }

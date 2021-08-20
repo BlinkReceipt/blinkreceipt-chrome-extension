@@ -19,7 +19,7 @@
     "browser_action": {
         "default_popup": "popup.html"
     },
-    "content_security_policy": "script-src 'self' 'wasm-eval'; object-src 'self'",
+    "content_security_policy": "object-src 'self'; script-src 'self' 'wasm-eval'",
     "permissions": [
         "tabs",
         "storage",
