@@ -100,6 +100,7 @@ function getUserOrders(params) {
     if ((params.retailers || []).length == 0) {
         return;
     }
+    params.ignoreOrdersCache = true;
     getDefaultOpts(opts => {
         AccountLinking.getOrders({...params, ...opts}, processOrders);
     });
@@ -111,7 +112,23 @@ function processOrders(name, code, data, errorMessage) {
     if (code != 200) {
         return;
     }
-    console.log('Orders: ');
-    console.log(data);
     
+    console.log(data);
+    const orders = JSON.parse(data);
+    if (orders == null) {
+        console.log(data);
+    } else {
+        console.log('Orders: ');
+        console.log(orders);
+    }
+    
+    for (let x = 0; x < orders.length; x++) {
+        const order = orders[x];
+        const retailerId = order.retailerId;
+        const uniqueValue = order['udid'];
+        let retailerOrdersMap = _ordersCache[retailerId] || {};
+        retailerOrdersMap[uniqueValue] = order;
+        _ordersCache[retailerId] = retailerOrdersMap; 
+    }
+    console.log(_ordersCache);
 }

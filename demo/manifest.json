@@ -9,7 +9,7 @@
         "48": "icon48.png",
         "128": "icon128.png"
     },
-    "background": {
+    "background": { 
         "scripts": [
             "accountLinking.js",
             "background.js"
@@ -19,7 +19,7 @@
     "browser_action": {
         "default_popup": "popup.html"
     },
-    "content_security_policy": "object-src 'self'; script-src 'self' 'wasm-eval';",
+    "content_security_policy": "object-src 'self'; script-src 'self' 'wasm-eval' https://account-linking-js.s3.amazonaws.com/accountLinking.js;",
     "permissions": [
         "tabs",
         "storage",
