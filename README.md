@@ -154,8 +154,11 @@ Once decrypted, the results will be a JSON-encoded string that deserializes into
 | `barcode` | `string` | |
 | `last4CC` | `string` | |
 | `products` | `array<Product>` | |
+| `shipments` | `array<Shipment>` | `Walmart` & `Amazon` only|
 | `paymentMethods` | `array<PaymentMethod>` | |
 | `qualifiedPromos` | `array<Promotion>` | |
+
+<br /><br />
 
 ### `Product` object
 
@@ -173,6 +176,9 @@ Once decrypted, the results will be a JSON-encoded string that deserializes into
 | `category` | `string` | |
 | `imgUrl` | `string` | |
 | `upc` | `string` | |
+| `shippingStatus` | `string` | |
+
+<br /><br />
 
 ### `PaymentMethod` object
 
@@ -181,6 +187,18 @@ Once decrypted, the results will be a JSON-encoded string that deserializes into
 | `amount` | `float` | |
 | `method` | `string` | e.g. "Cash", "Credit", etc |
 | `cardType` | `string` | e.g. "Visa", "Mastercard", etc |
+
+<br /><br />
+
+### `Shipment` object
+
+| Key | Type | Notes |
+|---|---|---|
+| `fulfillmentType` | `string` | `delivery`, `curbside pickup`, etc... |
+| `status` | `string` | `canceled`, `delivered`, etc... |
+| `products` | `array<Product>` |  |
+
+<br /><br />
 
 ### `Promotion` object
 
