@@ -1,5 +1,20 @@
 ﻿# Change Log
 
+## 1.1.0
+
+#### Added
+    * Error code improvements. Return 204 when list is empty.
+
+#### Fixed
+* `Amazon`
+    * WholeFoods order support 
+* `Shipt`
+    * Unable to authenticate user 
+* `Meijer`
+    * Parsing orders 
+    
+
+---
 ## 1.0.1
 
 #### Added
