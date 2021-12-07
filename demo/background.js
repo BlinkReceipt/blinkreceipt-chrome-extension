@@ -51,13 +51,13 @@ chrome.storage.sync.get(settings => {
     });
     
     chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-        if (_fetchMode == _fetchModes.ON_TAB_OPEN) {
-            getUserOrders({
-                url: tab.url,
-                fetchMode: _fetchMode,
-                retailers: validRetailers(tab.url)
-            });
-        }
+        // if (_fetchMode == _fetchModes.ON_TAB_OPEN) {
+        //     getUserOrders({
+        //         url: tab.url,
+        //         fetchMode: _fetchMode,
+        //         retailers: validRetailers(tab.url)
+        //     });
+        // }
     });
 
     if (_fetchMode == _fetchModes.SCHEDULED) {
@@ -79,10 +79,11 @@ function validRetailers(url) {
     }
     const finalList = _supportedRetailers.filter(name => {
         if (name == 'Amazon') {
-            return (url || '').includes(`${name.toLowerCase()}.`) && (url || '').includes('order-history');   
+            // return (url || '').includes(`${name.toLowerCase()}.`) && (url || '').includes('order-history');   
         }
         return (url || '').includes(`${name.toLowerCase()}.`);
     });
+    console.log(finalList);
     return finalList;
 }
 
@@ -100,16 +101,28 @@ function getUserOrders(params) {
     if ((params.retailers || []).length == 0) {
         return;
     }
-    params.ignoreOrdersCache = true;
-    getDefaultOpts(opts => {
-        AccountLinking.getOrders({...params, ...opts}, processOrders);
-    });
+
+    let validMerchants = params.retailers || [];
+    let counter = validMerchants.length;
+    for (const validMerchant of validMerchants) {
+        AccountLinking.getMerchantStatus(validMerchant, (status) => {
+            console.log(`${validMerchant} status: ${status} `);
+            counter -= 1;
+            if (counter <= 0) {
+                params.ignoreOrdersCache = true;
+                getDefaultOpts(opts => {
+                    AccountLinking.getOrders({...params, ...opts}, processOrders);
+                });
+            }
+        });
+    }   
+    
 }
 
 function processOrders(name, code, data, errorMessage) {
     console.log('----------------------------');
     console.log(`Code ${code}, Error: ${errorMessage}`);
-    if (code != 200) {
+    if (code != 200 && code != 204) {
         return;
     }
     

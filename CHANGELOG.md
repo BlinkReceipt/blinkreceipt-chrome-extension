@@ -1,9 +1,16 @@
-﻿# Change Log
+# Change Log
 
+## 1.2.0
+
+#### Added
+* `getMerchantStatus` function to check if user's session is valid or not
+* shipment_status returns one of the following options: `Ordered`, `Delivered`, `Undelivered`, `Shipped`, `Returned`, `Cancelled`, `Invalid`
+
+---
 ## 1.1.0
 
 #### Added
-    * Error code improvements. Return 204 when list is empty.
+* Error code improvements. Return 204 when list is empty.
 
 #### Fixed
 * `Amazon`
