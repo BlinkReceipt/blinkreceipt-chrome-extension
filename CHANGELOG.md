@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.1
+
+#### Added
+* `Picked Up` shipment status
+
+---
 ## 1.2.0
 
 #### Added
