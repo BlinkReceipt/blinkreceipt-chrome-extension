@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.2.2
+
+#### Added
+* Returning partial orders with `orderUrl` value for `Amazon` when extra login is required to open the order details
+* ProdIntel improvements
+* Bug fixes and optimizations
+
+---
 ## 1.2.1
 
 #### Added
