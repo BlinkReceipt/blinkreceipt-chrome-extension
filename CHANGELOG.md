@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.3
+
+#### Fixed
+* Moving amazon order requests to the background script
+
+---
 ## 1.2.2
 
 #### Added
