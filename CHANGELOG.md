@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.2.5
+
+#### Fixed
+* Some time we return 200 while the parsing actually failed.
+
+---
+## 1.2.4
+
+#### Added
+* Add coupons support
+
+#### Fixed
+* ProdIntel improvements
+
+---
 ## 1.2.3
 
 #### Fixed
